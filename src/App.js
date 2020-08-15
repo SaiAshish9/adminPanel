@@ -1,26 +1,18 @@
-import React,{useEffect} from 'react'
-import Dashboard from './screens/dashboard'
-import {BrowserRouter} from 'react-router-dom' 
-import Api from './api'
-
+import React, { useContext } from "react";
+import Dashboard from "./screens/dashboard";
+import { BrowserRouter } from "react-router-dom";
+import Cookie from "js-cookie";
+import Auth from "./screens/auth";
+import { Context as AuthContext } from "./contexts/authContext";
 
 const App = () => {
-
-
-  useEffect(() =>{
-  Api("internship/fetch?sortBy=stipend")
-  .then(data=>{
-    console.log(data)
-  })
-  .catch(e=>console.log(e.message))
-  
-  },[])
+  const { state } = useContext(AuthContext);
 
   return (
     <BrowserRouter>
-      <Dashboard/>
+      {state.is_logged_in ? <Dashboard /> : <Auth />}
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;

@@ -1,41 +1,29 @@
-import React from 'react'
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  DownOutlined,
-} from "@ant-design/icons";
+import React from "react";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import Dropdown from "./dropdown";
 
-import {Header,Text} from './index.styles'
+import { Header, Text } from "./index.styles";
 
-const TopBar = ({collapsed,toggleCollapsed,Row}) => {
-    return (
-      <Header>
-        <Row>
-          {!collapsed ? (
-            <MenuFoldOutlined
-              onClick={toggleCollapsed}
-              style={{ fontSize: 18, cursor: "pointer" }}
-            />
-          ) : (
-            <MenuUnfoldOutlined
-              onClick={toggleCollapsed}
-              style={{ fontSize: 18, cursor: "pointer" }}
-            />
-          )}
-          <Text>12th August 2020, 10:45 AM</Text>
-        </Row>
-        <Row>
-          <Text>Hi Mayank</Text>
-          <DownOutlined
-            style={{
-              marginLeft: 10,
-              fontWeight: "bolder",
-              cursor: "pointer",
-            }}
+const TopBar = ({ collapsed, toggleCollapsed, Row }) => {
+  return (
+    <Header>
+      <Row>
+        {!collapsed ? (
+          <MenuFoldOutlined
+            onClick={toggleCollapsed}
+            style={{ fontSize: 18, cursor: "pointer" }}
           />
-        </Row>
-      </Header>
-    )
-}
+        ) : (
+          <MenuUnfoldOutlined
+            onClick={toggleCollapsed}
+            style={{ fontSize: 18, cursor: "pointer" }}
+          />
+        )}
+        <Text>12th August 2020, 10:45 AM</Text>
+      </Row>
+      <Dropdown Row={Row} />
+    </Header>
+  );
+};
 
-export default TopBar
+export default TopBar;
